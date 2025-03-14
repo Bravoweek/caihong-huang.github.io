@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄彩虹 - 专业律师</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --light-accent: rgba(52, 152, 219, 0.1);
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --section-padding: 80px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(44, 62, 80, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            margin-left: 5px;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* 英雄区域样式 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 49%, rgba(52, 152, 219, 0.1) 50%, transparent 51%);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            z-index: 1;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* 关于我区域 */
+        section {
+            padding: var(--section-padding);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about {
+            background-color: white;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--light-accent) 0%, transparent 70%);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(44, 62, 80, 0.6) 0%, rgba(44, 62, 80, 0) 50%);
+            z-index: 1;
+        }
+
+        .about-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .about-info p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .info-list {
+            margin-top: 30px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-item i {
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .info-item strong {
+            margin-right: 10px;
+            min-width: 80px;
+            color: var(--dark-color);
+        }
+
+        /* 教育和工作经历 */
+        .timeline-section {
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 49.5%, var(--light-accent) 49.5%, var(--light-accent) 50.5%, transparent 50.5%);
+            background-size: 30px 30px;
+            opacity: 0.5;
+        }
+
+        .timeline-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            margin: 0 10px;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 6px var(--light-accent);
+        }
+
+        .timeline-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .timeline-subtitle {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .timeline-desc {
+            color: #777;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* 专业领域 */
+        .expertise {
+            background-color: white;
+            position: relative;
+        }
+
+        .expertise::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-accent) 0%, transparent 100%);
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .expertise-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background-color: var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        .expertise-card:hover::before {
+            height: 100%;
+        }
+
+        .expertise-icon {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .expertise-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .expertise-desc {
+            color: #777;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 联系部分 */
+        .contact {
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(315deg, transparent 49%, var(--light-accent) 49.5%, var(--light-accent) 50.5%, transparent 51%);
+            background-size: 30px 30px;
+            opacity: 0.5;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+        }
+
+        .contact-list {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            min-width: 40px;
+            height: 40px;
+            background-color: var(--light-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .contact-detail h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .contact-detail p {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            color: var(--dark-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            padding: 50px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, var(--dark-color) 25%, transparent 25%, transparent 75%, var(--dark-color) 75%),
+                              linear-gradient(45deg, var(--dark-color) 25%, transparent 25%, transparent 75%, var(--dark-color) 75%);
+            background-size: 10px 10px;
+            background-position: 0 0, 5px 5px;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .footer-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+
+        .footer-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-menu li {
+            margin: 0 15px;
+        }
+
+        .footer-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-menu {
+                flex-wrap: wrap;
+            }
+            
+            .footer-menu li {
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-balance-scale"></i> 黄彩虹<span>律师</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#experience">经历</a></li>
+                    <li><a href="#expertise">专业领域</a></li>
+                    <li><a href="#contact">联系我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>黄彩虹 <span>律师</span></h1>
+            <p>专业、高效、细致的法律服务 | 浙江海浩（宁波）律师事务所</p>
+            <a href="#contact" class="btn">咨询预约</a>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我</h2>
+                <p>拥有法学本科学位和丰富的法务经验，专注于提供全面、专业的法律服务</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://i.ibb.co/Y4Yfvmmj/a8e7e7066882488596be14c0588d6ed4-2.jpg" alt="黄彩虹律师形象照">
+                </div>
+                <div class="about-info">
+                    <h3>黄彩虹律师</h3>
+                    <p>您好！我是黄彩虹，一位专注于为客户提供全面法律服务的律师。我毕业于湖北警官学院法学专业，拥有扎实的法律理论基础和丰富的实践经验。</p>
+                    <p>在多年的职业生涯中，我担任过法务专员和商标代理人等职务，积累了丰富的法律实务经验，尤其是在知识产权和企业法律事务方面有着深入的研究。</p>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <strong>学历:</strong> 湖北警官学院法学学士
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-briefcase"></i>
+                            <strong>职业:</strong> 实习律师
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-building"></i>
+                            <strong>所属:</strong> 浙江海浩（宁波）律师事务所
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <strong>出生日期:</strong> 1993年6月
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育和工作经历 -->
+    <section class="timeline-section" id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>我的经历</h2>
+                <p>多年的学习和工作历程塑造了我的专业素养</p>
+            </div>
+            <div class="timeline-tabs">
+                <button class="tab-btn active" onclick="openTab('education')">教育经历</button>
+                <button class="tab-btn" onclick="openTab('work')">工作经历</button>
+            </div>
+
+            <div class="timeline-content" id="education">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2014年9月 - 2018年6月</span>
+                            <h3 class="timeline-title">湖北警官学院</h3>
+                            <h4 class="timeline-subtitle">法学专业 | 学士学位</h4>
+                            <p class="timeline-desc">系统学习法律理论知识，掌握法律实务技能，为未来的律师职业奠定坚实基础。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2009年9月 - 2014年6月</span>
+                            <h3 class="timeline-title">邳州明德实验学校</h3>
+                            <h4 class="timeline-subtitle">理科方向 | 普通高中</h4>
+                            <p class="timeline-desc">接受全面的基础教育，培养严谨的逻辑思维能力和分析问题的能力。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-content" id="work" style="display: none;">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2025年3月 - 至今</span>
+                            <h3 class="timeline-title">浙江海浩（宁波）律师事务所</h3>
+                            <h4 class="timeline-subtitle">实习律师</h4>
+                            <p class="timeline-desc">参与各类案件代理工作，提供法律咨询服务，不断提升专业实践能力。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2024年12月 - 2025年3月</span>
+                            <h3 class="timeline-title">腾飞科技股份有限公司</h3>
+                            <h4 class="timeline-subtitle">法务专员</h4>
+                            <p class="timeline-desc">负责公司合同审核、风险管控，处理知识产权保护和企业法律合规事务。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2021年10月 - 2024年10月</span>
+                            <h3 class="timeline-title">宜明（苏州）细胞生物科技有限公司</h3>
+                            <h4 class="timeline-subtitle">法务专员</h4>
+                            <p class="timeline-desc">全面负责公司的法律事务管理，包括合同起草与审核、法律风险评估及企业合规建设。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2021年6月 - 2021年9月</span>
+                            <h3 class="timeline-title">上海瀛哲法商互联网科技有限公司</h3>
+                            <h4 class="timeline-subtitle">法务专员</h4>
+                            <p class="timeline-desc">提供法律服务及咨询，处理公司日常法务事宜，参与法律文件起草与审阅。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2020年4月 - 2021年5月</span>
+                            <h3 class="timeline-title">上海尚标知识产权服务有限公司</h3>
+                            <h4 class="timeline-subtitle">商标代理人</h4>
+                            <p class="timeline-desc">负责客户商标注册申请、查询、异议及无效宣告等业务，为客户提供知识产权保护方案。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2018年11月 - 2020年4月</span>
+                            <h3 class="timeline-title">上海佳士商务咨询有限公司</h3>
+                            <h4 class="timeline-subtitle">商标代理人</h4>
+                            <p class="timeline-desc">办理商标注册申请，提供商标法律意见，协助客户进行商标权维护和商标纠纷处理。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ <!-- 专业领域 -->
+ <section class="expertise" id="expertise">
+    <div class="container">
+        <div class="section-title">
+            <h2>专业领域</h2>
+            <p>我的专业知识和实践经验为您提供全方位的法律保障</p>
+        </div>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <i class="fas fa-trademark"></i>
+                </div>
+                <h3 class="expertise-title">知识产权保护</h3>
+                <p class="expertise-desc">提供商标注册、专利申请、著作权保护等全方位知识产权法律服务，帮助个人和企业有效保护创新成果和品牌价值。</p>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="expertise-title">合同法律事务</h3>
+    <p class="expertise-desc">为企业提供日常法律风险防控、合规管理及法律咨询服务，解决公司运营中遇到的各类法律问题。</p>
+</div>
+<div class="expertise-card">
+    <div class="expertise-icon">
+        <i class="fas fa-gavel"></i>
+    </div>
+    <h3 class="expertise-title">诉讼与仲裁</h3>
+    <p class="expertise-desc">代理各类民商事纠纷案件，制定有效的诉讼或仲裁策略，依法维护当事人的合法权益。</p>
+</div>
+<div class="expertise-card">
+    <div class="expertise-icon">
+        <i class="fas fa-handshake"></i>
+    </div>
+    <h3 class="expertise-title">商事法律服务</h3>
+    <p class="expertise-desc">提供公司设立、股权架构设计、投融资法律服务、企业并购重组等专业商事法律服务，助力企业健康发展。</p>
+</div>
+<div class="expertise-card">
+    <div class="expertise-icon">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+    <h3 class="expertise-title">风险防控</h3>
+    <p class="expertise-desc">针对企业和个人进行法律风险评估与管理，提前识别潜在法律风险并制定防范措施，降低法律纠纷发生率。</p>
+</div>
+<div class="expertise-card">
+    <div class="expertise-icon">
+        <i class="fas fa-gavel"></i>
+    </div>
+    <h3 class="expertise-title">企业法律顾问</h3>
+    <p class="expertise-desc">为企业提供日常法律风险防控、合规管理及法律咨询服务，解决公司运营中遇到的各类法律问题</p>
+</div>
+
+</div>
+</div>
+</section>
+<!-- 联系部分 -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>联系我</h2>
+            <p>如需法律咨询或合作，请随时与我联系</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>联系信息</h3>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>地址</h4>
+                            <p>浙江省宁波市海曙区，浙江海浩（宁波）律师事务所</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>电话</h4>
+                            <p>+86 18761918888</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>邮箱</h4>
+                            <p>caihong.huang@lawfirm.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>工作时间</h4>
+                            <p>周一至周五: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-weixin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-weibo"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-rss"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>在线咨询</h3>
+                <form id="consultationForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="电子邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="联系电话">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="请简要描述您的法律需求..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-block">提交咨询</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+    <div class="container footer-content">
+        <div class="footer-logo">黄彩虹<span>律师</span></div>
+        <ul class="footer-menu">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#experience">经历</a></li>
+            <li><a href="#expertise">专业领域</a></li>
+            <li><a href="#contact">联系我</a></li>
+        </ul>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-weixin"></i></a>
+            <a href="#"><i class="fab fa-weibo"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fas fa-rss"></i></a>
+        </div>
+        <p class="copyright">© 2023 黄彩虹律师. 保留所有权利.</p>
+    </div>
+</footer>
+
+<!-- JavaScript代码 -->
+<script>
+    // 页面滚动时导航栏效果
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // 切换经历选项卡
+    function openTab(tabName) {
+        const tabs = document.getElementsByClassName('timeline-content');
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].style.display = 'none';
+        }
+        
+        const buttons = document.getElementsByClassName('tab-btn');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+        
+        document.getElementById(tabName).style.display = 'block';
+        event.currentTarget.classList.add('active');
+    }
+
+    // 表单提交处理
+    document.getElementById('consultationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('感谢您的咨询！我将尽快与您联系。');
+        this.reset();
+    });
+    
+    // 动态加载动画
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const elements = document.querySelectorAll('.section-title, .about-content, .expertise-card, .timeline-item');
+            elements.forEach(function(element, index) {
+                setTimeout(function() {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }, 300);
+    });
+</script>
+</body>
+</html>
